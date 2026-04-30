@@ -3,34 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>인터넷활용 실습 템플릿</title>
+  <title>장희승 프로필 - 인터넷활용 실습</title>
+  <!-- 눈에 띄는 폰트 추가 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- CSS 연결 -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>이름: 장희승/h1>
-  <p class="subtitle">한 줄 소개: 광운대학교 건축학과</p>
+
+<!-- 상단 영역 -->
+<header class="main-header">
+  <div class="header-content container">
+    <h1>장희승</h1>
+    <p class="subtitle">광운대학교 건축학과 | Future Architect</p>
+  </div>
 </header>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="contact.html">Contact</a>
+
+<!-- 내비게이션 -->
+<nav class="main-nav">
+  <div class="nav-content container">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </nav>
-<main class="container">
-<section>
-  <h2>홈</h2>
-  <p>안녕하세요! 저는 <strong>이름: 장희승</strong> 입니다.</p>
-  <ul>
-    <li>학과/학번: 건축학과/2025127011</li>
-    <li>관심 분야: ai 로봇</li>
-    <li>기술 스택(예: HTML, CSS, JS): 딱히 없음.</li>
-  </ul>
-</section>
+
+<!-- 메인 콘텐츠 -->
+<main class="container page-content">
+  <section class="profile-card">
+    <div class="card-header">
+      <h2>Profile</h2>
+    </div>
+    <div class="card-body">
+      <p class="greeting">안녕하세요! <strong>건축</strong>과 <strong>AI 로봇</strong>의 만남을 꿈꾸는 <strong>장희승</strong>입니다.</p>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">학과/학번</span>
+          <span class="value">건축학과 / 2025127011</span>
+        </div>
+        <div class="info-item">
+          <span class="label">관심 분야</span>
+          <span class="value">AI 로봇, 스마트 건축, 파라메트릭 디자인</span>
+        </div>
+        <div class="info-item">
+          <span class="label">기술 스택</span>
+          <span class="value">배우는 중 (HTML, CSS, JS)</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
-<footer>
-  <small>&copy; <span id="year"></span> 이름: 장희승</small>
+
+<!-- 하단 영역 -->
+<footer class="main-footer">
+  <div class="footer-content container">
+    <p>&copy; <span id="year"></span> Jang Hee Seung. All rights reserved.</p>
+  </div>
 </footer>
+
 <script src="script.js"></script>
 </body>
 </html>
