@@ -29,20 +29,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-// 4. 추가 기능: 교수님 저격용 '다크/라이트 모드' 유기적 토글 기능
+// 4. 추가 기능: 페이지 이동/새로고침 해도 유지되는 다크/라이트 모드 저장 기능
 document.addEventListener("DOMContentLoaded", function () {
   var themeToggleBtn = document.getElementById("themeToggle");
   
+  // [체크] 이전에 사용자가 라이트 모드로 설정해둔 게 있는지 확인 후 미리 적용
+  var currentTheme = localStorage.getItem("theme");
+  if (currentTheme === "light") {
+    document.documentElement.classList.add("light-mode");
+    if (themeToggleBtn) themeToggleBtn.textContent = "🌙 다크 모드로 보기";
+  }
+
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", function () {
-      // 최상단 <html> 태그에 'light-mode' 클래스를 붙였다 뗐다(토글) 합니다.
+      // 최상단 <html> 태그에 'light-mode' 클래스를 토글합니다.
       document.documentElement.classList.toggle("light-mode");
       
-      // 현재 상태가 라이트 모드인지 확인 후 버튼 글자 토글 변경
+      // 상태를 판별해서 글자도 바꾸고 기억장치(localStorage)에 기록도 합니다.
       if (document.documentElement.classList.contains("light-mode")) {
         themeToggleBtn.textContent = "🌙 다크 모드 전환";
+        localStorage.setItem("theme", "light"); // 라이트 모드 상태 기억해!
       } else {
         themeToggleBtn.textContent = "☀️ 라이트 모드 전환";
+        localStorage.setItem("theme", "dark");  // 다크 모드 상태 기억해!
       }
     });
   }
