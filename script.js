@@ -29,3 +29,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+// 4. 추가 기능: 교수님 저격용 '다크/라이트 모드' 유기적 토글 기능
+document.addEventListener("DOMContentLoaded", function () {
+  var themeToggleBtn = document.getElementById("themeToggle");
+  
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", function () {
+      // 최상단 <html> 태그에 'light-mode' 클래스를 붙였다 뗐다(토글) 합니다.
+      document.documentElement.classList.toggle("light-mode");
+      
+      // 현재 상태가 라이트 모드인지 확인 후 버튼 글자 토글 변경
+      if (document.documentElement.classList.contains("light-mode")) {
+        themeToggleBtn.textContent = "🌙 다크 모드 전환";
+      } else {
+        themeToggleBtn.textContent = "☀️ 라이트 모드 전환";
+      }
+    });
+  }
+});
