@@ -11,7 +11,7 @@
   --border-color: #cbd5e1;   /* 밝은 회색 테두리 */
 }
 
-/* 🏢 라이트 모드일 때 '학력', '관심 분야', '포트폴리오', '컨택트' 상자 내부 색상 강제 지정 */
+/* 🏢 라이트 모드일 때 전 페이지 상자(학력, 관심분야, 포트폴리오, 컨택트 등) 내부 색상 강제 지정 */
 :root.light-mode .info-item,
 :root.light-mode .info-box,
 :root.light-mode .portfolio-card-item,
@@ -35,18 +35,19 @@
 :root.light-mode .info-box p,
 :root.light-mode .portfolio-card-item h3,
 :root.light-mode .project-desc,
-:root.light-mode .contact-form label {
+:root.light-mode .contact-form label,
+:root.light-mode .sub-value {
   color: #0b132b !important;            /* 내부 콘텐츠 세부 글자들을 네이비로 */
 }
 
-/* [핵심 요청] 라이트 모드일 때 홈화면 설명문(.intro-text)과 나머지 설명문(.greeting)을 선명한 검은색으로 변경! */
+/* 🎯 [핵심] 라이트 모드일 때 홈화면(.intro-text)과 나머지 화면(.greeting)의 첫 설명문을 선명한 검은색으로 일괄 변경! */
 :root.light-mode .intro-text,
 :root.light-mode .greeting {
   color: #0f172a !important;
 }
 :root.light-mode .intro-text strong,
 :root.light-mode .greeting strong {
-  color: #4facfe !important;            /* 라이트 모드일 때는 포인트 컬러를 디지털 블루로 매치 */
+  color: #4facfe !important;            /* 라이트 모드일 때는 네온 감성을 살려 디지털 블루로 매치 */
 }
 
 /* 라이트 모드일 때 강력한 헤더 그라데이션과 네온 라인을 싹 제거 */
@@ -161,204 +162,4 @@ ul { list-style: none; }
   content: '';
   position: absolute;
   bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--primary), transparent);
-}
-
-.main-header h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  letter-spacing: -1px;
-  margin-bottom: 12px;
-  color: var(--text-main); 
-}
-
-.main-header .subtitle {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--text-muted);
-  letter-spacing: 0.5px;
-}
-
-.main-nav {
-  background-color: rgba(28, 37, 65, 0.9); 
-  backdrop-filter: blur(10px); 
-  -webkit-backdrop-filter: blur(10px); 
-  border-bottom: 1px solid var(--border-color);
-  position: sticky; 
-  top: 0;
-  z-index: 100;
-}
-
-.nav-content {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-
-.main-nav a {
-  padding: 16px 20px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  position: relative;
-}
-
-.main-nav a:hover,
-.main-nav a.active {
-  color: var(--primary);
-}
-
-.main-nav a.active::after,
-.main-nav a:hover::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary);
-  box-shadow: 0 0 8px var(--primary); 
-}
-
-/* =============================================================
-   5. 메인 콘텐츠 및 [핵심] 설명문 스타일 통일
-   ------------------------------------------------------------- */
-.page-content {
-  padding: 50px 0 90px;
-}
-
-.profile-card {
-  background-color: var(--bg-card);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border-color);
-  overflow: hidden; 
-}
-
-.card-header {
-  background-color: rgba(11, 19, 43, 0.3);
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.card-header h2 {
-  font-size: 1.4rem;
-  color: var(--primary);
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.card-body {
-  padding: 32px;
-}
-
-/* [통일 완료] 홈화면의 intro-text와 나머지 화면의 greeting 스타일을 완벽하게 일치시킴 */
-.intro-text,
-.greeting {
-  font-size: 1.2rem;
-  margin-bottom: 32px;
-  font-weight: 400;
-  color: #e2e8f0;
-  line-height: 1.8;
-}
-
-/* 은은한 네온색 포인트 강조 효과 */
-.intro-text strong,
-.greeting strong {
-  font-weight: 600;
-  color: var(--primary);
-  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
-}
-
-/* =============================================================
-   6. 기타 컴포넌트 레이아웃 스타일 (Grid 및 박스 요소)
-   ------------------------------------------------------------- */
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-}
-
-.info-item, .info-box {
-  background-color: rgba(11, 19, 43, 0.4);
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.25s ease, 
-              border-color 0.25s ease;
-}
-
-.info-item:hover, .info-box:hover {
-  transform: translateY(-4px);
-  background-color: var(--bg-hover);
-  border-color: var(--primary);
-  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.1);
-}
-
-.info-item .label, .info-box h3 {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 8px;
-}
-
-.info-item .value, .info-box p {
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--text-main);
-}
-
-.sub-value {
-  font-size: 0.88rem !important;
-  color: var(--text-muted) !important;
-  margin-top: 4px;
-}
-
-/* 포트폴리오, 컨택트용 추가 스타일 호환 */
-.portfolio-card-item, .channel-box, .form-wrapper {
-  background-color: rgba(11, 19, 43, 0.4);
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 16px;
-}
-
-.card-badge {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  background-color: var(--primary-dark);
-  color: #fff;
-}
-
-/* =============================================================
-   7. 하단 푸터 및 반응형 디자인
-   ------------------------------------------------------------- */
-footer {
-  background-color: #0b132b;
-  color: #64748b;
-  padding: 35px 0;
-  text-align: center;
-  font-size: 0.85rem;
-  border-top: 1px solid var(--border-color);
-}
-
-@media (max-width: 768px) {
-  .main-header { padding: 50px 0; }
-  .main-header h1 { font-size: 2.2rem; }
-  .nav-content { gap: 0; }
-  .main-nav a { padding: 14px 12px; font-size: 0.88rem; }
-  .card-body { padding: 24px; }
-  .intro-text, .greeting { font-size: 1.1rem; margin-bottom: 24px; }
-  .info-grid { grid-template-columns: 1fr; } 
-}
+  left:
