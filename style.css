@@ -1,8 +1,8 @@
 /* =============================================================
    1. 다크/라이트 모드 테마 및 토글 버튼 스타일
    ------------------------------------------------------------- */
-/* ☀️ 라이트 모드 전용 색상 설정 */
-:root.light-mode {
+/* ☀️ 라이트 모드 전용 변수 설정 */
+.light-mode {
   --bg-page: #f8fafc;        /* 밝은 배경 */
   --bg-card: #ffffff;        /* 흰색 카드 배경 */
   --bg-hover: #e2e8f0;       /* 카드 마우스 호버 색상 */
@@ -11,92 +11,79 @@
   --border-color: #cbd5e1;   /* 밝은 회색 테두리 */
 }
 
-/* 🏢 라이트 모드일 때 전 페이지 상자(학력, 관심분야, 포트폴리오, 컨택트 등) 내부 색상 강제 지정 */
-:root.light-mode .info-item,
-:root.light-mode .info-box,
-:root.light-mode .portfolio-card-item,
-:root.light-mode .channel-box,
-:root.light-mode .form-wrapper {
+/* 🏢 라이트 모드일 때 전체 레이아웃 및 카드 배경 강제 지정 */
+.light-mode .profile-card {
+  background-color: var(--bg-card) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.light-mode .info-item,
+.light-mode .info-box,
+.light-mode .portfolio-card-item,
+.light-mode .channel-box,
+.light-mode .form-wrapper {
   background-color: #f1f5f9 !important; /* 약간 밝은 회색 상자로 변경 */
-  border-color: #3a506b !important;     /* 테두리를 세련된 네이비 라인으로 변경 */
+  border-color: #cbd5e1 !important;     /* 테두리를 차분한 회색 라인으로 변경 */
 }
 
 /* 라이트 모드일 때 텍스트들을 딥 네이비 / 딥 블랙 색상으로 변경하여 가독성 확보 */
-:root.light-mode .info-item .label,
-:root.light-mode .info-box h3,
-:root.light-mode .channel-box .label,
-:root.light-mode .form-wrapper h3 {
+.light-mode .info-item .label,
+.light-mode .info-box h3,
+.light-mode .channel-box .label,
+.light-mode .form-wrapper h3 {
   color: #1c2541 !important;            /* 주요 라벨 및 제목을 진한 네이비로 */
   font-weight: 700;
 }
 
-:root.light-mode .info-item .value,
-:root.light-mode .info-item .value p,
-:root.light-mode .info-box p,
-:root.light-mode .portfolio-card-item h3,
-:root.light-mode .project-desc,
-:root.light-mode .contact-form label,
-:root.light-mode .sub-value {
+.light-mode .info-item .value,
+.light-mode .info-item .value p,
+.light-mode .info-box p,
+.light-mode .portfolio-card-item h3,
+.light-mode .project-desc,
+.light-mode .contact-form label,
+.light-mode .sub-value {
   color: #0b132b !important;            /* 내부 콘텐츠 세부 글자들을 네이비로 */
 }
 
-/* 🎯 [핵심] 라이트 모드일 때 홈화면(.intro-text)과 나머지 화면(.greeting)의 첫 설명문을 선명한 검은색으로 일괄 변경! */
-:root.light-mode .intro-text,
-:root.light-mode .greeting {
+/* 🎯 라이트 모드일 때 첫 설명문을 선명한 검은색으로 변경! */
+.light-mode .intro-text,
+.light-mode .greeting {
   color: #0f172a !important;
 }
-:root.light-mode .intro-text strong,
-:root.light-mode .greeting strong {
-  color: #4facfe !important;            /* 라이트 모드일 때는 네온 감성을 살려 디지털 블루로 매치 */
+.light-mode .intro-text strong,
+.light-mode .greeting strong {
+  color: #4facfe !important;            /* 디지털 블루 포인트 */
 }
 
-/* 라이트 모드일 때 강력한 헤더 그라데이션과 네온 라인을 싹 제거 */
-:root.light-mode .main-header {
+/* 라이트 모드일 때 헤더 디자인 조정 */
+.light-mode .main-header {
   background: #ffffff !important;
+  color: #0f172a !important;
   border-bottom: 1px solid var(--border-color);
 }
-:root.light-mode .main-header::after {
+.light-mode .main-header .subtitle {
+  color: #334155 !important;
+}
+.light-mode .main-header::after {
   display: none !important;
 }
-:root.light-mode .main-nav {
+.light-mode .main-nav {
   background-color: rgba(255, 255, 255, 0.9) !important;
   border-bottom: 1px solid var(--border-color);
 }
-
-/* 헤더 영역 전체 레이아웃 잡기 */
-.header-title-area {
-  position: relative;
-  text-align: center;
+.light-mode .main-nav a {
+  color: #334155 !important;
 }
-
-/* 토글 버튼 스타일 */
-.toggle-btn {
-  position: absolute;
-  bottom: -50px;       
-  right: 24px;         
-  padding: 8px 14px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  z-index: 10;
-}
-
-.toggle-btn:hover {
-  background-color: var(--primary);
-  color: #0b132b;
-  box-shadow: 0 0 10px var(--primary);
+.light-mode .main-nav a.active {
+  color: #4facfe !important;
+  border-bottom-color: #4facfe !important;
 }
 
 /* 라이트 모드일 때의 버튼 디자인 반전 */
-:root.light-mode .toggle-btn {
-  background-color: #0b132b;
-  color: #ffffff;
-  border: none;
+.light-mode .toggle-btn {
+  background-color: #0b132b !important;
+  color: #ffffff !important;
+  border: none !important;
 }
 
 /* =============================================================
