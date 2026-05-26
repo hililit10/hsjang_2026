@@ -17,6 +17,11 @@ html.light-mode .profile-card {
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
+/* ★ 핵심수정: 라이트 모드일 때 body의 기본 글자색도 검은색 변수로 강제 변경 */
+html.light-mode body {
+  color: var(--text-main) !important;
+}
+
 html.light-mode .info-item,
 html.light-mode .info-box,
 html.light-mode .portfolio-card-item,
@@ -24,6 +29,7 @@ html.light-mode .channel-box,
 html.light-mode .form-wrapper {
   background-color: #f1f5f9 !important; /* 약간 밝은 회색 상자로 변경 */
   border-color: #cbd5e1 !important;     /* 테두리를 차분한 회색 라인으로 변경 */
+  color: var(--text-main) !important;
 }
 
 /* 라이트 모드일 때 텍스트들을 딥 네이비 / 딥 블랙 색상으로 변경하여 가독성 확보 */
@@ -35,21 +41,22 @@ html.light-mode .form-wrapper h3 {
   font-weight: 700;
 }
 
-html.light-mode .info-item,
-html.light-mode .info-box,
-html.light-mode .portfolio-card-item,
-html.light-mode .project-desc,
-html.light-mode .contact-form label {
-  color: #0b132b !important;
-}
-
-/* About과 Home 상자 내부의 모든 글씨를 강제로 검은색 처리 */
+/* ★ 핵심수정: About과 Home 상자 내부의 모든 글씨(p, span, 생텍스트 등)를 누락 없이 강제 흑색 처리 */
 html.light-mode .info-item *,
 html.light-mode .info-box * {
   color: #0f172a !important;
 }
 
-/* 부연 설명이나 서브 텍스트용 색상 */
+html.light-mode .info-item .value,
+html.light-mode .info-item .value p,
+html.light-mode .info-box p,
+html.light-mode .portfolio-card-item h3,
+html.light-mode .project-desc,
+html.light-mode .contact-form label {
+  color: #0b132b !important;            /* 내부 콘텐츠 세부 글자들을 네이비로 */
+}
+
+/* 연한 서브 글자들을 위한 보정 */
 html.light-mode .sub-value,
 html.light-mode .status-desc {
   color: #334155 !important;
@@ -159,4 +166,5 @@ ul { list-style: none; }
   content: '';
   position: absolute;
   bottom: -1px;
-  left:
+  left: 0;
+}
