@@ -3,41 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>인터넷활용 실습 템플릿</title>
+  <title>장희승 | Contact</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header>
-  <h1>이름: 장희승/h1>
-  <p class="subtitle">한 줄 소개: 광운대학교 건축학과</p>
+  <h1>장희승</h1>
+  <p class="subtitle">광운대학교 건축학과</p>
 </header>
+
 <nav>
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="portfolio.html">Portfolio</a>
-  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="active">Contact</a>
 </nav>
+
 <main class="container">
-<section>
-  <h2>Contact</h2>
-  <ul>
-    <li>이메일: jasmin0570@gmail.com</li>
-    <li>GitHub: https://github.com/hililit10/hsjang_2026</li>
-    <li>기타 링크(블로그/노션 등): https://www.instagram.com/hs.hcaep/</li>
-  </ul>
-  <!-- 아래는 정말 기본 예시 폼입니다. JS 없이도 동작하지 않아도 되며, 형태만 제공합니다. -->
-  <form class="contact-form" onsubmit="return false;">
-    <label>이름</label>
-    <input type="text" placeholder="이름을 입력하세요">
-    <label>메시지</label>
-    <textarea rows="4" placeholder="메시지를 입력하세요"></textarea>
-    <button type="submit">보내기 (동작X, 형태만)</button>
-  </form>
-</section>
+  <section class="profile-card">
+    <h2>Contact Me</h2>
+    <p class="intro-text">협업 제안이나 문의 사항이 있으시다면 아래 채널을 통해 편하게 연락해 주세요!</p>
+    
+    <div class="contact-channels">
+      <div class="channel-box">
+        <span class="icon">📧</span>
+        <span class="label">이메일</span>
+        <a href="mailto:jasmin0570@gmail.com" class="link-btn">jasmin0570@gmail.com</a>
+      </div>
+      
+      <div class="channel-box">
+        <span class="icon">💻</span>
+        <span class="label">GitHub</span>
+        <a href="https://github.com/hililit10/hsjang_2026" target="_blank" rel="noopener noreferrer" class="link-btn">Repository 방문</a>
+      </div>
+      
+      <div class="channel-box">
+        <span class="icon">📸</span>
+        <span class="label">Instagram</span>
+        <a href="https://www.instagram.com/hs.hcaep/" target="_blank" rel="noopener noreferrer" class="link-btn">@hs.hcaep</a>
+      </div>
+    </div>
+
+    <div class="form-wrapper">
+      <h3>✉️ 메시지 남기기</h3>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" id="name" placeholder="이름을 입력하세요">
+        </div>
+        
+        <div class="form-group">
+          <label for="message">메시지</label>
+          <textarea id="message" rows="5" placeholder="메시지를 입력하세요"></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">보내기 (형태만 제공)</button>
+      </form>
+    </div>
+  </section>
 </main>
+
 <footer>
-  <small>&copy; <span id="year"></span> 이름: 장희승</small>
+  <small>&copy; <span id="year">2026</span> 장희승. All rights reserved.</small>
 </footer>
+
 <script src="script.js"></script>
 </body>
+</html>
 </html>
