@@ -1,5 +1,5 @@
 /* =============================================================
-   다크/라이트 모드 변수 선언 및 버튼 스타일
+   다크/라이트 모드 변수 선언 및 버튼 스타일 (수정본)
    ------------------------------------------------------------- */
 /* 라이트 모드 전용 색상 설정 */
 :root.light-mode {
@@ -11,15 +11,31 @@
   --border-color: #cbd5e1;   /* 밝은 회색 테두리 */
 }
 
-/* 이름 우측 버튼 정렬을 위한 스타일 */
-.header-title-area {
-  position: relative;
-  display: inline-block;
+/* 라이트 모드일 때 강력한 헤더 그라데이션과 네온 라인을 싹 제거하는 마법 */
+:root.light-mode .main-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid var(--border-color);
+}
+:root.light-mode .main-header::after {
+  display: none !important; /* 네온 라인 숨기기 */
+}
+:root.light-mode .main-nav {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid var(--border-color);
 }
 
-/* 토글 버튼 세련된 아이폰 스타일 디자인 */
+/* 헤더 영역 전체 레이아웃 잡기 */
+.header-title-area {
+  position: relative;
+  text-align: center;
+}
+
+/* 토글 버튼을 이름 설명보다 '많이 밑에', '오른쪽 끝'으로 치우치게 세팅 */
 .toggle-btn {
-  padding: 6px 12px;
+  position: absolute;
+  bottom: -50px;       /* 서브타이틀보다 아래로 슥 내리기 */
+  right: 24px;         /* 오른쪽 끝으로 정렬 */
+  padding: 8px 14px;
   font-size: 0.8rem;
   font-weight: 600;
   background-color: rgba(255, 255, 255, 0.15);
@@ -28,8 +44,7 @@
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.25s ease;
-  margin-left: 10px;
-  vertical-align: middle;
+  z-index: 10;
 }
 
 .toggle-btn:hover {
@@ -43,10 +58,6 @@
   background-color: #0b132b;
   color: #ffffff;
   border: none;
-}
-:root.light-mode .toggle-btn:hover {
-  background-color: #4facfe;
-  box-shadow: 0 0 10px #4facfe;
 }
 /* =============================================================
    디자인 테마 설정 (미래지향적인 사이버 딥 블루 & 시안)
