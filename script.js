@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var currentTheme = localStorage.getItem("theme");
   if (currentTheme === "light") {
     document.documentElement.classList.add("light-mode");
-    if (themeToggleBtn) themeToggleBtn.textContent = "🌙 다크 모드로 보기";
+    if (themeToggleBtn) themeToggleBtn.textContent = "🌙 다크 모드 전환";
   }
 
   if (themeToggleBtn) {
