@@ -2,7 +2,7 @@
    1. 다크/라이트 모드 테마 및 토글 버튼 스타일
    ------------------------------------------------------------- */
 /* ☀️ 라이트 모드 전용 변수 설정 */
-.light-mode {
+html.light-mode {
   --bg-page: #f8fafc;        /* 밝은 배경 */
   --bg-card: #ffffff;        /* 흰색 카드 배경 */
   --bg-hover: #e2e8f0;       /* 카드 마우스 호버 색상 */
@@ -12,75 +12,75 @@
 }
 
 /* 🏢 라이트 모드일 때 전체 레이아웃 및 카드 배경 강제 지정 */
-.light-mode .profile-card {
+html.light-mode .profile-card {
   background-color: var(--bg-card) !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.light-mode .info-item,
-.light-mode .info-box,
-.light-mode .portfolio-card-item,
-.light-mode .channel-box,
-.light-mode .form-wrapper {
+html.light-mode .info-item,
+html.light-mode .info-box,
+html.light-mode .portfolio-card-item,
+html.light-mode .channel-box,
+html.light-mode .form-wrapper {
   background-color: #f1f5f9 !important; /* 약간 밝은 회색 상자로 변경 */
   border-color: #cbd5e1 !important;     /* 테두리를 차분한 회색 라인으로 변경 */
 }
 
 /* 라이트 모드일 때 텍스트들을 딥 네이비 / 딥 블랙 색상으로 변경하여 가독성 확보 */
-.light-mode .info-item .label,
-.light-mode .info-box h3,
-.light-mode .channel-box .label,
-.light-mode .form-wrapper h3 {
+html.light-mode .info-item .label,
+html.light-mode .info-box h3,
+html.light-mode .channel-box .label,
+html.light-mode .form-wrapper h3 {
   color: #1c2541 !important;            /* 주요 라벨 및 제목을 진한 네이비로 */
   font-weight: 700;
 }
 
-.light-mode .info-item .value,
-.light-mode .info-item .value p,
-.light-mode .info-box p,
-.light-mode .portfolio-card-item h3,
-.light-mode .project-desc,
-.light-mode .contact-form label,
-.light-mode .sub-value {
+html.light-mode .info-item .value,
+html.light-mode .info-item .value p,
+html.light-mode .info-box p,
+html.light-mode .portfolio-card-item h3,
+html.light-mode .project-desc,
+html.light-mode .contact-form label,
+html.light-mode .sub-value {
   color: #0b132b !important;            /* 내부 콘텐츠 세부 글자들을 네이비로 */
 }
 
 /* 🎯 라이트 모드일 때 첫 설명문을 선명한 검은색으로 변경! */
-.light-mode .intro-text,
-.light-mode .greeting {
+html.light-mode .intro-text,
+html.light-mode .greeting {
   color: #0f172a !important;
 }
-.light-mode .intro-text strong,
-.light-mode .greeting strong {
+html.light-mode .intro-text strong,
+html.light-mode .greeting strong {
   color: #4facfe !important;            /* 디지털 블루 포인트 */
 }
 
 /* 라이트 모드일 때 헤더 디자인 조정 */
-.light-mode .main-header {
+html.light-mode .main-header {
   background: #ffffff !important;
   color: #0f172a !important;
   border-bottom: 1px solid var(--border-color);
 }
-.light-mode .main-header .subtitle {
+html.light-mode .main-header .subtitle {
   color: #334155 !important;
 }
-.light-mode .main-header::after {
+html.light-mode .main-header::after {
   display: none !important;
 }
-.light-mode .main-nav {
+html.light-mode .main-nav {
   background-color: rgba(255, 255, 255, 0.9) !important;
   border-bottom: 1px solid var(--border-color);
 }
-.light-mode .main-nav a {
+html.light-mode .main-nav a {
   color: #334155 !important;
 }
-.light-mode .main-nav a.active {
+html.light-mode .main-nav a.active {
   color: #4facfe !important;
   border-bottom-color: #4facfe !important;
 }
 
 /* 라이트 모드일 때의 버튼 디자인 반전 */
-.light-mode .toggle-btn {
+html.light-mode .toggle-btn {
   background-color: #0b132b !important;
   color: #ffffff !important;
   border: none !important;
