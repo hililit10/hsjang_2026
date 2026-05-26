@@ -18,48 +18,52 @@
 
 <nav class="main-nav">
   <div class="nav-content container">
-    <a href="index.html" class="active">Home</a>
+    <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="contact.html">Contact</a>
+    <a href="portfolio.html" class="active">Portfolio</a> <a href="contact.html">Contact</a>
   </div>
 </nav>
 
-<main class="container">
+<main class="container page-content">
   <section class="profile-card">
-    <h2>My Portfolio</h2>
-    <p class="intro-text">건축학 전공 과제물과 디지털 공간을 구축하는 웹 프로그래밍 프로젝트를 소개합니다.</p>
+    <div class="card-header">
+      <h2>My Portfolio</h2>
+    </div>
     
-    <div class="portfolio-list">
+    <div class="card-body">
+      <p class="greeting" style="margin-bottom: 25px;">건축학 전공 과제물과 디지털 공간을 구축하는 웹 프로그래밍 프로젝트를 소개합니다.</p>
       
-      <div class="portfolio-card-item">
-        <div class="card-badge architecture">Architecture</div>
-        <div class="card-content-area">
-          <h3>공간 설계 스튜디오 과제</h3>
-          <p class="project-desc">
-            전통적인 건축 개념에 현대적인 동선과 커뮤니티 공간을 결합한 공간 설계 프로젝트입니다. 
-            스케치와 모델링을 통해 가상의 공간을 구체화하는 작업을 진행했습니다.
-          </p>
-          <div class="card-links">
-            <span class="no-link">CAD / Rhino / SketchUp</span>
+      <div class="portfolio-list">
+        
+        <div class="portfolio-card-item">
+          <div class="card-badge architecture">Architecture</div>
+          <div class="card-content-area">
+            <h3>공간 설계 스튜디오 과제</h3>
+            <p class="project-desc">
+              전통적인 건축 개념에 현대적인 동선과 커뮤니티 공간을 결합한 공간 설계 프로젝트입니다. 
+              스케치와 모델링을 통해 가상의 공간을 구체화하는 작업을 진행했습니다.
+            </p>
+            <div class="card-links">
+              <span class="no-link">CAD / Rhino / SketchUp</span>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div class="portfolio-card-item">
-        <div class="card-badge development">Web Dev</div>
-        <div class="card-content-area">
-          <h3>인터넷 활용 실습 개인 프로필 사이트</h3>
-          <p class="project-desc">
-            HTML5, CSS3, JavaScript를 활용하여 제작한 나만의 반응형 포트폴리오 웹사이트입니다. 
-            GitHub 저장소를 통해 소스 코드를 관리하고 웹에 배포했습니다.
-          </p>
-          <div class="card-links">
-            <a href="https://github.com/hililit10/hsjang_2026" target="_blank" rel="noopener noreferrer" class="project-link-btn">GitHub 저장소 보러가기 ➔</a>
+        
+        <div class="portfolio-card-item">
+          <div class="card-badge development">Web Dev</div>
+          <div class="card-content-area">
+            <h3>인터넷 활용 실습 개인 프로필 사이트</h3>
+            <p class="project-desc">
+              HTML5, CSS3, JavaScript를 활용하여 제작한 나만의 반응형 포트폴리오 웹사이트입니다. 
+              GitHub 저장소를 통해 소스 코드를 관리하고 웹에 배포했습니다.
+            </p>
+            <div class="card-links">
+              <a href="https://github.com/hililit10/hsjang_2026" target="_blank" rel="noopener noreferrer" class="project-link-btn">GitHub 저장소 보러가기 ➔</a>
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </section>
 </main>
