@@ -1,126 +1,38 @@
 /* =============================================================
-   1. 다크/라이트 모드 테마 및 토글 버튼 스타일
-   ------------------------------------------------------------- */
-/* ☀️ 라이트 모드 전용 변수 설정 */
-html.light-mode {
-  --bg-page: #f8fafc;        /* 밝은 배경 */
-  --bg-card: #ffffff;        /* 흰색 카드 배경 */
-  --bg-hover: #e2e8f0;       /* 카드 마우스 호버 색상 */
-  --text-main: #0f172a;      /* 완전 선명한 대문자급 검은색 */
-  --text-muted: #334155;     /* 가독성을 높인 진한 다크 그레이 */
-  --border-color: #cbd5e1;   /* 밝은 회색 테두리 */
-}
+   다크/라이트 모드 CSS 변수
+   ============================================================= */
 
-/* 🏢 라이트 모드일 때 전체 레이아웃 및 카드 배경 강제 지정 */
-html.light-mode .profile-card {
-  background-color: var(--bg-card) !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-/* ★ 핵심수정: 라이트 모드일 때 body의 기본 글자색도 검은색 변수로 강제 변경 */
-html.light-mode body {
-  color: var(--text-main) !important;
-}
-
-html.light-mode .info-item,
-html.light-mode .info-box,
-html.light-mode .portfolio-card-item,
-html.light-mode .channel-box,
-html.light-mode .form-wrapper {
-  background-color: #f1f5f9 !important; /* 약간 밝은 회색 상자로 변경 */
-  border-color: #cbd5e1 !important;     /* 테두리를 차분한 회색 라인으로 변경 */
-  color: var(--text-main) !important;
-}
-
-/* 라이트 모드일 때 텍스트들을 딥 네이비 / 딥 블랙 색상으로 변경하여 가독성 확보 */
-html.light-mode .info-item .label,
-html.light-mode .info-box h3,
-html.light-mode .channel-box .label,
-html.light-mode .form-wrapper h3 {
-  color: #1c2541 !important;            /* 주요 라벨 및 제목을 진한 네이비로 */
-  font-weight: 700;
-}
-
-/* ★ 핵심수정: About과 Home 상자 내부의 모든 글씨(p, span, 생텍스트 등)를 누락 없이 강제 흑색 처리 */
-html.light-mode .info-item *,
-html.light-mode .info-box * {
-  color: #0f172a !important;
-}
-
-html.light-mode .info-item .value,
-html.light-mode .info-item .value p,
-html.light-mode .info-box p,
-html.light-mode .portfolio-card-item h3,
-html.light-mode .project-desc,
-html.light-mode .contact-form label {
-  color: #0b132b !important;            /* 내부 콘텐츠 세부 글자들을 네이비로 */
-}
-
-/* 연한 서브 글자들을 위한 보정 */
-html.light-mode .sub-value,
-html.light-mode .status-desc {
-  color: #334155 !important;
-}
-
-/* 🎯 라이트 모드일 때 첫 설명문을 선명한 검은색으로 변경! */
-html.light-mode .intro-text,
-html.light-mode .greeting {
-  color: #0f172a !important;
-}
-html.light-mode .intro-text strong,
-html.light-mode .greeting strong {
-  color: #4facfe !important;            /* 디지털 블루 포인트 */
-}
-
-/* 라이트 모드일 때 헤더 디자인 조정 */
-html.light-mode .main-header {
-  background: #ffffff !important;
-  color: #0f172a !important;
-  border-bottom: 1px solid var(--border-color);
-}
-html.light-mode .main-header .subtitle {
-  color: #334155 !important;
-}
-html.light-mode .main-header::after {
-  display: none !important;
-}
-html.light-mode .main-nav {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  border-bottom: 1px solid var(--border-color);
-}
-html.light-mode .main-nav a {
-  color: #334155 !important;
-}
-html.light-mode .main-nav a.active {
-  color: #4facfe !important;
-  border-bottom-color: #4facfe !important;
-}
-
-/* 라이트 모드일 때의 버튼 디자인 반전 */
-html.light-mode .toggle-btn {
-  background-color: #0b132b !important;
-  color: #ffffff !important;
-  border: none !important;
-}
-
-/* =============================================================
-   2. 디자인 테마 설정 (미래지향적인 사이버 딥 블루 & 시안) - 기본 다크 모드
-   ------------------------------------------------------------- */
+/* 기본: 다크 모드 */
 :root {
-  --primary: #00f2fe;        /* 메인: 일렉트릭 시안 (Electric Cyan) */
-  --primary-dark: #4facfe;   /* 포인트: 디지털 블루 */
-  --bg-page: #0b132b;        /* 페이지 배경: 심해 우주 느낌의 딥 네이비 */
-  --bg-card: #1c2541;        /* 카드 배경: 세련된 다크 블루 그레이 */
-  --bg-hover: #243056;       /* 카드 호버 배경 */
-  --text-main: #f8fafc;      /* 본문 글자 색: 선명한 화이트/실버 */
-  --text-muted: #94a3b8;     /* 부연 설명 글자 색: 차분한 그레이 */
-  --border-color: #3a506b;   /* 테두리 색: 사이버틱한 네이비 테두리 */
-  --shadow: 0 8px 32px rgba(0, 0, 0, 0.25); /* 깊이감 있는 어두운 그림자 */
+  --primary: #00f2fe;
+  --primary-dark: #4facfe;
+  --bg-page: #0b132b;
+  --bg-card: #1c2541;
+  --bg-hover: #243056;
+  --bg-inner: #243056;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #3a506b;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* 라이트 모드 */
+html.light-mode {
+  --primary: #0284c7;
+  --primary-dark: #4facfe;
+  --bg-page: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-hover: #e2e8f0;
+  --bg-inner: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border-color: #cbd5e1;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* =============================================================
-   3. 기본 스타일 (Reset & Typography)
-   ------------------------------------------------------------- */
+   기본 리셋 & 타이포그래피
+   ============================================================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -132,8 +44,9 @@ body {
   background-color: var(--bg-page);
   color: var(--text-main);
   line-height: 1.7;
-  word-break: keep-all; 
+  word-break: keep-all;
   letter-spacing: -0.3px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -145,26 +58,515 @@ a {
 ul { list-style: none; }
 
 .container {
-  max-width: 800px; 
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 /* =============================================================
-   4. 상단 헤더 & 내비게이션
-   ------------------------------------------------------------- */
+   헤더
+   ============================================================= */
 .main-header {
   background: linear-gradient(135deg, #0b132b 0%, #1c2541 100%);
   color: #ffffff;
-  padding: 70px 0;
+  padding: 60px 0 50px;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
   position: relative;
+  transition: background 0.3s ease;
 }
 
-.main-header::after {
-  content: '';
+html.light-mode .main-header {
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-title-area {
+  position: relative;
+}
+
+.main-header h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+html.light-mode .main-header h1 {
+  color: #0f172a;
+}
+
+.main-header .subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+html.light-mode .main-header .subtitle {
+  color: #475569;
+}
+
+/* 테마 토글 버튼 */
+.toggle-btn {
   position: absolute;
-  bottom: -1px;
-  left: 0;
+  top: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+html.light-mode .toggle-btn {
+  background-color: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+html.light-mode .toggle-btn:hover {
+  background-color: #1e293b;
+}
+
+/* =============================================================
+   내비게이션
+   ============================================================= */
+.main-nav {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+.nav-content {
+  display: flex;
+  gap: 8px;
+}
+
+.main-nav a {
+  display: inline-block;
+  padding: 16px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--text-main);
+}
+
+.main-nav a.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: 600;
+}
+
+/* =============================================================
+   메인 콘텐츠
+   ============================================================= */
+.page-content {
+  padding-top: 36px;
+  padding-bottom: 60px;
+}
+
+/* 프로필 카드 (섹션 전체 감싸는 박스) */
+.profile-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 카드 헤더 (파란 타이틀 영역) */
+.card-header {
+  padding: 24px 32px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.08) 0%, rgba(79, 172, 254, 0.05) 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+html.light-mode .card-header {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.06) 0%, rgba(79, 172, 254, 0.04) 100%);
+}
+
+.card-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* 카드 바디 */
+.card-body {
+  padding: 32px;
+}
+
+/* 인사말 텍스트 */
+.greeting {
+  font-size: 1rem;
+  color: var(--text-main);
+  margin-bottom: 28px;
+  line-height: 1.8;
+}
+
+.greeting strong {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+/* =============================================================
+   정보 그리드 (Home & About 공용)
+   ============================================================= */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 560px) {
+  .info-grid { grid-template-columns: 1fr; }
+}
+
+/* info-box: Home 페이지 정보 상자 */
+.info-box {
+  background-color: var(--bg-inner);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 20px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.info-box h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.info-box p {
+  font-size: 0.92rem;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.info-box .sub-value {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* info-item: About 페이지 정보 상자 */
+.info-item {
+  background-color: var(--bg-inner);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 20px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.info-item .label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.info-item .value {
+  color: var(--text-main);
+}
+
+.info-item .value p {
+  font-size: 0.92rem;
+  color: var(--text-main);
+}
+
+/* =============================================================
+   Current Status (Home)
+   ============================================================= */
+.status-wrapper {
+  margin-top: 4px;
+}
+
+.status-wrapper h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.status-badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.status-badge {
+  background-color: rgba(0, 242, 254, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+html.light-mode .status-badge {
+  background-color: rgba(2, 132, 199, 0.08);
+  color: var(--primary);
+  border-color: rgba(2, 132, 199, 0.2);
+}
+
+.status-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* =============================================================
+   Portfolio 페이지
+   ============================================================= */
+.portfolio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.portfolio-card-item {
+  background-color: var(--bg-inner);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.portfolio-card-item:hover {
+  background-color: var(--bg-hover);
+  transform: translateY(-2px);
+}
+
+.card-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  width: fit-content;
+}
+
+.card-badge.architecture {
+  background-color: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+.card-badge.development {
+  background-color: rgba(0, 242, 254, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+}
+
+html.light-mode .card-badge.development {
+  background-color: rgba(2, 132, 199, 0.08);
+  color: var(--primary);
+  border-color: rgba(2, 132, 199, 0.2);
+}
+
+.portfolio-card-item h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.project-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.card-links {
+  margin-top: 4px;
+}
+
+.project-link-btn {
+  display: inline-block;
+  background-color: var(--primary);
+  color: #0b132b;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.project-link-btn:hover {
+  opacity: 0.85;
+  transform: translateX(2px);
+}
+
+.no-link {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* =============================================================
+   Contact 페이지
+   ============================================================= */
+.contact-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.channel-box {
+  background-color: var(--bg-inner);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.channel-box:hover {
+  background-color: var(--bg-hover);
+  transform: translateX(4px);
+}
+
+.channel-box .icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.channel-box .label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 70px;
+}
+
+.link-btn {
+  font-size: 0.92rem;
+  color: var(--primary);
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.link-btn:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* 메시지 폼 */
+.form-wrapper {
+  background-color: var(--bg-inner);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 24px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-wrapper h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-form label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.contact-form input,
+.contact-form textarea {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: var(--text-main);
+  resize: vertical;
+  transition: border-color 0.2s ease, background-color 0.3s ease;
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--primary);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #0b132b;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* =============================================================
+   푸터
+   ============================================================= */
+footer {
+  text-align: center;
+  padding: 28px 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+  margin-top: 20px;
 }
