@@ -7,7 +7,6 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 토글 아코디언 */
     .accordion-item {
       border: 1px solid var(--border-color);
       border-radius: 12px;
@@ -50,7 +49,7 @@
     .accordion-body {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.3s ease;
+      transition: max-height 0.35s ease;
       background-color: var(--bg-card);
     }
 
@@ -81,19 +80,25 @@
       top: 2px;
     }
 
-    /* 툴 뱃지 */
-    .tool-badge-grid {
+    /* 툴 그룹 */
+    .tool-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tool-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 4px;
+      gap: 8px;
+      align-items: center;
     }
 
     .tool-badge {
       background-color: var(--bg-inner);
       border: 1px solid var(--border-color);
       border-radius: 10px;
-      padding: 8px 16px;
+      padding: 7px 15px;
       font-size: 0.88rem;
       font-weight: 600;
       color: var(--text-main);
@@ -105,6 +110,13 @@
       border-color: var(--primary);
       color: var(--primary);
       transform: translateY(-2px);
+    }
+
+    .tool-divider {
+      width: 100%;
+      height: 1px;
+      background-color: var(--border-color);
+      margin: 2px 0;
     }
 
     .section-label {
@@ -152,7 +164,7 @@
 
         <div class="accordion-item">
           <button class="accordion-btn" onclick="toggleAccordion(this)">
-            🏛️ 건축학과 전공
+            🏛️ 건축학과
             <span class="arrow">▼</span>
           </button>
           <div class="accordion-body">
@@ -201,15 +213,26 @@
       <!-- 사용 툴 -->
       <div class="about-section">
         <p class="section-label">🛠️ 사용 툴</p>
-        <div class="tool-badge-grid">
-          <span class="tool-badge">AutoCAD</span>
-          <span class="tool-badge">Rhino</span>
-          <span class="tool-badge">SketchUp</span>
-          <span class="tool-badge">Enscape</span>
-          <span class="tool-badge">D5 Render</span>
-          <span class="tool-badge">OrCAD</span>
-          <span class="tool-badge">HTML / CSS</span>
-          <span class="tool-badge">JavaScript</span>
+        <div class="tool-group">
+          <div class="tool-row">
+            <span class="tool-badge">AutoCAD</span>
+            <span class="tool-badge">Rhino</span>
+            <span class="tool-badge">SketchUp</span>
+          </div>
+          <div class="tool-divider"></div>
+          <div class="tool-row">
+            <span class="tool-badge">Enscape</span>
+            <span class="tool-badge">D5 Render</span>
+          </div>
+          <div class="tool-divider"></div>
+          <div class="tool-row">
+            <span class="tool-badge">OrCAD</span>
+          </div>
+          <div class="tool-divider"></div>
+          <div class="tool-row">
+            <span class="tool-badge">HTML / CSS</span>
+            <span class="tool-badge">JavaScript</span>
+          </div>
         </div>
       </div>
 
@@ -224,7 +247,6 @@
   function toggleAccordion(btn) {
     const body = btn.nextElementSibling;
     const isOpen = btn.classList.contains('open');
-
     btn.classList.toggle('open', !isOpen);
     body.classList.toggle('open', !isOpen);
   }
