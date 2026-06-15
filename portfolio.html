@@ -7,7 +7,6 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 카테고리 섹션 타이틀 */
     .portfolio-category-title {
       font-size: 1rem;
       font-weight: 700;
@@ -19,12 +18,8 @@
       padding-bottom: 8px;
       border-bottom: 1px solid var(--border-color);
     }
+    .portfolio-category-title:first-of-type { margin-top: 0; }
 
-    .portfolio-category-title:first-of-type {
-      margin-top: 0;
-    }
-
-    /* 포트폴리오 카드 */
     .portfolio-card-item {
       background-color: var(--bg-inner);
       border: 1px solid var(--border-color);
@@ -33,13 +28,8 @@
       margin-bottom: 16px;
       transition: border-color 0.2s ease, transform 0.2s ease;
     }
+    .portfolio-card-item:hover { border-color: var(--primary); transform: translateY(-2px); }
 
-    .portfolio-card-item:hover {
-      border-color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    /* 토글 헤더 */
     .portfolio-toggle-btn {
       width: 100%;
       background: none;
@@ -53,70 +43,28 @@
       font-family: inherit;
       transition: background-color 0.2s ease;
     }
+    .portfolio-toggle-btn:hover { background-color: var(--bg-hover); }
+    .portfolio-toggle-btn .card-badge { flex-shrink: 0; }
+    .portfolio-toggle-btn .card-title-area { flex: 1; }
+    .portfolio-toggle-btn h3 { font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 3px; }
+    .portfolio-toggle-btn .card-sub { font-size: 0.82rem; color: var(--text-muted); }
+    .portfolio-toggle-btn .arrow { font-size: 0.75rem; color: var(--text-muted); transition: transform 0.3s ease; flex-shrink: 0; }
+    .portfolio-toggle-btn.open .arrow { transform: rotate(180deg); }
 
-    .portfolio-toggle-btn:hover {
-      background-color: var(--bg-hover);
-    }
-
-    .portfolio-toggle-btn .card-badge {
-      flex-shrink: 0;
-    }
-
-    .portfolio-toggle-btn .card-title-area {
-      flex: 1;
-    }
-
-    .portfolio-toggle-btn h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 3px;
-    }
-
-    .portfolio-toggle-btn .card-sub {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .portfolio-toggle-btn .arrow {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-
-    .portfolio-toggle-btn.open .arrow {
-      transform: rotate(180deg);
-    }
-
-    /* 토글 바디 */
-    .portfolio-toggle-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-
-    .portfolio-toggle-body.open {
-      max-height: 1200px;
-    }
+    .portfolio-toggle-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .portfolio-toggle-body.open { max-height: 1200px; }
 
     .portfolio-toggle-body-inner {
       padding: 0 24px 24px;
       border-top: 1px solid var(--border-color);
     }
 
-    /* 이미지 그리드 */
     .project-images {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin: 16px 0;
     }
-
-    .project-images.single {
-      grid-template-columns: 1fr;
-    }
-
     .project-images img {
       width: 100%;
       border-radius: 10px;
@@ -124,28 +72,11 @@
       aspect-ratio: 4/3;
       background-color: var(--bg-hover);
     }
+    .project-images img.panel { grid-column: 1 / -1; aspect-ratio: 3/2; }
 
-    .project-images img.panel {
-      grid-column: 1 / -1;
-      aspect-ratio: 3/2;
-    }
+    .project-desc { font-size: 0.92rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
 
-    /* 설명 */
-    .project-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-bottom: 14px;
-    }
-
-    /* 태그 */
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 14px;
-    }
-
+    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
     .project-tag {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -156,7 +87,6 @@
       color: var(--text-muted);
     }
 
-    /* 링크 버튼 */
     .project-link-btn {
       display: inline-block;
       background-color: var(--primary);
@@ -165,21 +95,120 @@
       border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 700;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition: opacity 0.2s ease;
       margin-top: 4px;
     }
+    .project-link-btn:hover { opacity: 0.85; }
 
-    .project-link-btn:hover {
-      opacity: 0.85;
-      transform: translateX(2px);
+    /* 댓글 */
+    .comment-section {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-color);
     }
+    .comment-section h3 { font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 14px; }
 
-    .project-link-btn.secondary {
-      background-color: transparent;
+    .comment-write-btn {
+      width: 100%;
+      padding: 14px 18px;
+      background-color: var(--bg-inner);
+      border: 1px dashed var(--border-color);
+      border-radius: 12px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+    .comment-write-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+    .comment-form {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      background-color: var(--bg-inner);
       border: 1px solid var(--primary);
-      color: var(--primary);
-      margin-left: 8px;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
     }
+    .comment-form.active { display: flex; }
+
+    .comment-form input,
+    .comment-form textarea {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .comment-form input:focus,
+    .comment-form textarea:focus { border-color: var(--primary); }
+    .comment-form textarea { resize: none; min-height: 80px; }
+    .comment-form input::placeholder,
+    .comment-form textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+    .comment-form-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+    .comment-cancel-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: none;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .comment-submit-btn {
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #0b132b;
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .comment-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+
+    .comment-item {
+      background-color: var(--bg-inner);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .comment-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .comment-item-name { font-size: 0.88rem; font-weight: 700; color: var(--primary); }
+    .comment-item-time { font-size: 0.78rem; color: var(--text-muted); }
+    .comment-item-text { font-size: 0.9rem; color: var(--text-main); line-height: 1.7; margin-bottom: 10px; }
+    .comment-item-actions { display: flex; gap: 8px; }
+
+    .reaction-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: none;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .reaction-btn.liked { background-color: rgba(0,242,254,0.1); border-color: var(--primary); color: var(--primary); }
+    .reaction-btn.disliked { background-color: rgba(248,113,113,0.1); border-color: #f87171; color: #f87171; }
+
+    .comment-empty { text-align: center; padding: 24px; color: var(--text-muted); font-size: 0.88rem; }
   </style>
 </head>
 <body>
@@ -206,10 +235,8 @@
     <div class="card-body">
       <p class="greeting" style="margin-bottom: 28px;">건축 설계, 로봇 제작, 웹 개발까지 — 다양한 분야의 프로젝트를 소개합니다.</p>
 
-      <!-- 건축 설계 -->
       <p class="portfolio-category-title">🏛️ 건축 설계</p>
 
-      <!-- 1. 버스정류장 -->
       <div class="portfolio-card-item">
         <button class="portfolio-toggle-btn" onclick="togglePortfolio(this)">
           <span class="card-badge architecture">Architecture</span>
@@ -223,8 +250,8 @@
           <div class="portfolio-toggle-body-inner">
             <div class="project-images">
               <img src="bus-panel.jpeg" alt="버스정류장 판넬" class="panel">
-              <img src="bus-model1.png" alt="버스정류장 모형1">
-              <img src="bus-model2.png" alt="버스정류장 모형2">
+              <img src="bus-model1.jpg" alt="버스정류장 모형1">
+              <img src="bus-model2.jpg" alt="버스정류장 모형2">
             </div>
             <p class="project-desc">
               "우리는 자주 멈추지만, 어떤 휴식은 짧고 어떤 휴식은 오래 머문다." — 시간과 휴식의 개념을 공간으로 풀어낸 버스정류장 설계 프로젝트입니다.
@@ -241,7 +268,6 @@
         </div>
       </div>
 
-      <!-- 2. 월하우스 -->
       <div class="portfolio-card-item">
         <button class="portfolio-toggle-btn" onclick="togglePortfolio(this)">
           <span class="card-badge architecture">Architecture</span>
@@ -255,8 +281,8 @@
           <div class="portfolio-toggle-body-inner">
             <div class="project-images">
               <img src="wall-panel.jpg" alt="월하우스 판넬" class="panel">
-              <img src="wall-model1.png" alt="월하우스 모형1">
-              <img src="wall-model2.png" alt="월하우스 모형2">
+              <img src="wall-model1.jpg" alt="월하우스 모형1">
+              <img src="wall-model2.jpg" alt="월하우스 모형2">
             </div>
             <p class="project-desc">
               영화 About Time에서 영감을 받아, '시간의 미끄러짐(Time Slip)'을 공간으로 해석한 주거 설계 프로젝트입니다.
@@ -272,7 +298,6 @@
         </div>
       </div>
 
-      <!-- 3. 원룸 -->
       <div class="portfolio-card-item">
         <button class="portfolio-toggle-btn" onclick="togglePortfolio(this)">
           <span class="card-badge architecture">Architecture</span>
@@ -305,10 +330,8 @@
         </div>
       </div>
 
-      <!-- 로봇 / 개발 -->
       <p class="portfolio-category-title">🤖 로봇 & 개발</p>
 
-      <!-- 4. 로봇 -->
       <div class="portfolio-card-item">
         <button class="portfolio-toggle-btn" onclick="togglePortfolio(this)">
           <span class="card-badge development">Robotics</span>
@@ -340,7 +363,6 @@
         </div>
       </div>
 
-      <!-- 5. my-link -->
       <div class="portfolio-card-item">
         <button class="portfolio-toggle-btn" onclick="togglePortfolio(this)">
           <span class="card-badge development">Web Dev</span>
@@ -366,7 +388,6 @@
         </div>
       </div>
 
-      <!-- 6. 웹 포트폴리오 -->
       <div class="portfolio-card-item">
         <button class="portfolio-toggle-btn" onclick="togglePortfolio(this)">
           <span class="card-badge development">Web Dev</span>
@@ -394,6 +415,23 @@
         </div>
       </div>
 
+      <!-- 댓글 섹션 -->
+      <div class="comment-section">
+        <h3>💬 댓글</h3>
+        <div class="comment-form" id="commentForm">
+          <input type="text" id="cmName" placeholder="이름" maxlength="20">
+          <textarea id="cmText" placeholder="이 포트폴리오에 대한 의견을 남겨주세요 :)"></textarea>
+          <div class="comment-form-actions">
+            <button class="comment-cancel-btn" id="cmCancel">취소</button>
+            <button class="comment-submit-btn" id="cmSubmit">등록</button>
+          </div>
+        </div>
+        <button class="comment-write-btn" id="cmWriteBtn">✏️ 댓글 남기기</button>
+        <div class="comment-list" id="commentList">
+          <div class="comment-empty" id="cmEmpty">아직 댓글이 없어요. 첫 번째 댓글을 남겨보세요!</div>
+        </div>
+      </div>
+
     </div>
   </section>
 </main>
@@ -403,11 +441,125 @@
 <script src="script.js"></script>
 <script>
   function togglePortfolio(btn) {
-    const body = btn.nextElementSibling;
-    const isOpen = btn.classList.contains('open');
+    var body = btn.nextElementSibling;
+    var isOpen = btn.classList.contains('open');
     btn.classList.toggle('open', !isOpen);
     body.classList.toggle('open', !isOpen);
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var CM_KEY = 'portfolio_comments';
+    var cmForm = document.getElementById('commentForm');
+    var cmWriteBtn = document.getElementById('cmWriteBtn');
+    var cmCancel = document.getElementById('cmCancel');
+    var cmSubmit = document.getElementById('cmSubmit');
+    var cmName = document.getElementById('cmName');
+    var cmText = document.getElementById('cmText');
+    var cmList = document.getElementById('commentList');
+    var cmEmpty = document.getElementById('cmEmpty');
+
+    function openForm() {
+      cmForm.classList.add('active');
+      cmWriteBtn.style.display = 'none';
+      cmName.focus();
+    }
+    function closeForm() {
+      cmForm.classList.remove('active');
+      cmWriteBtn.style.display = 'block';
+      cmName.value = '';
+      cmText.value = '';
+    }
+
+    cmWriteBtn.addEventListener('click', openForm);
+    cmCancel.addEventListener('click', closeForm);
+
+    document.addEventListener('click', function(e) {
+      if (cmForm.classList.contains('active') &&
+          !cmForm.contains(e.target) &&
+          e.target !== cmWriteBtn) {
+        if (!cmName.value.trim() && !cmText.value.trim()) closeForm();
+      }
+    });
+
+    function getEntries() { return JSON.parse(localStorage.getItem(CM_KEY) || '[]'); }
+    function saveEntries(entries) { localStorage.setItem(CM_KEY, JSON.stringify(entries)); }
+
+    function formatTime(iso) {
+      var d = new Date(iso);
+      return d.getFullYear() + '.' +
+        String(d.getMonth()+1).padStart(2,'0') + '.' +
+        String(d.getDate()).padStart(2,'0') + ' ' +
+        String(d.getHours()).padStart(2,'0') + ':' +
+        String(d.getMinutes()).padStart(2,'0');
+    }
+
+    function esc(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function render() {
+      var entries = getEntries();
+      cmList.querySelectorAll('.comment-item').forEach(function(el) { el.remove(); });
+      cmEmpty.style.display = entries.length === 0 ? 'block' : 'none';
+
+      entries.slice().reverse().forEach(function(entry) {
+        var item = document.createElement('div');
+        item.className = 'comment-item';
+        item.innerHTML =
+          '<div class="comment-item-header">' +
+            '<span class="comment-item-name">' + esc(entry.name) + '</span>' +
+            '<span class="comment-item-time">' + formatTime(entry.time) + '</span>' +
+          '</div>' +
+          '<p class="comment-item-text">' + esc(entry.text) + '</p>' +
+          '<div class="comment-item-actions">' +
+            '<button class="reaction-btn ' + (entry.myReaction === 'like' ? 'liked' : '') + '" data-reaction="like">👍 <span>' + entry.likes + '</span></button>' +
+            '<button class="reaction-btn ' + (entry.myReaction === 'dislike' ? 'disliked' : '') + '" data-reaction="dislike">👎 <span>' + entry.dislikes + '</span></button>' +
+          '</div>';
+
+        item.querySelectorAll('.reaction-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var entries2 = getEntries();
+            var e2 = entries2.find(function(x) { return x.id === entry.id; });
+            if (!e2) return;
+            if (e2.myReaction === btn.dataset.reaction) {
+              if (btn.dataset.reaction === 'like') e2.likes--; else e2.dislikes--;
+              e2.myReaction = null;
+            } else {
+              if (e2.myReaction === 'like') e2.likes--;
+              if (e2.myReaction === 'dislike') e2.dislikes--;
+              if (btn.dataset.reaction === 'like') e2.likes++; else e2.dislikes++;
+              e2.myReaction = btn.dataset.reaction;
+            }
+            saveEntries(entries2);
+            render();
+          });
+        });
+
+        cmList.appendChild(item);
+      });
+    }
+
+    cmSubmit.addEventListener('click', function() {
+      var name = cmName.value.trim();
+      var text = cmText.value.trim();
+      if (!text) { cmText.focus(); return; }
+      var entries = getEntries();
+      entries.push({
+        id: Date.now().toString(),
+        name: name || '익명',
+        text: text,
+        time: new Date().toISOString(),
+        likes: 0,
+        dislikes: 0,
+        myReaction: null
+      });
+      saveEntries(entries);
+      closeForm();
+      render();
+    });
+
+    render();
+  });
 </script>
 </body>
 </html>
