@@ -1,24 +1,226 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>장희승 | Home</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── 방명록 ── */
+    .guestbook-section {
+      margin-top: 32px;
+    }
+
+    .guestbook-section h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    /* 작성 버튼 */
+    .guestbook-write-btn {
+      width: 100%;
+      padding: 14px 18px;
+      background-color: var(--bg-inner);
+      border: 1px dashed var(--border-color);
+      border-radius: 12px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .guestbook-write-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* 입력 폼 */
+    .guestbook-form {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      background-color: var(--bg-inner);
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .guestbook-form.active {
+      display: flex;
+    }
+
+    .guestbook-form input,
+    .guestbook-form textarea {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .guestbook-form input:focus,
+    .guestbook-form textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .guestbook-form textarea {
+      resize: none;
+      min-height: 80px;
+    }
+
+    .guestbook-form input::placeholder,
+    .guestbook-form textarea::placeholder {
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    .guestbook-form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .guestbook-cancel-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: none;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .guestbook-cancel-btn:hover {
+      border-color: var(--text-muted);
+    }
+
+    .guestbook-submit-btn {
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #0b132b;
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .guestbook-submit-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* 댓글 리스트 */
+    .guestbook-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .guestbook-item {
+      background-color: var(--bg-inner);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: border-color 0.2s ease;
+    }
+
+    .guestbook-item:hover {
+      border-color: var(--primary);
+    }
+
+    .guestbook-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .guestbook-item-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .guestbook-item-time {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .guestbook-item-text {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .guestbook-item-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .reaction-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: none;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .reaction-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .reaction-btn.liked {
+      background-color: rgba(0, 242, 254, 0.1);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .reaction-btn.disliked {
+      background-color: rgba(248, 113, 113, 0.1);
+      border-color: #f87171;
+      color: #f87171;
+    }
+
+    .guestbook-empty {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+  </style>
 </head>
-
 <body>
-
- <header class="main-header">
+  <header class="main-header">
     <div class="container header-title-area">
       <h1>장희승</h1>
-      <p class="subtitle">광운대학교 공과대학 건축학과 | Future Architect</p>
+      <p class="subtitle">광운대학교 건축학과 | Future Architect</p>
       <button id="themeToggle" class="toggle-btn">☀️ 라이트 모드 전환</button>
     </div>
   </header>
-
   <nav class="main-nav">
     <div class="nav-content container">
       <a href="index.html" class="active">Home</a>
@@ -27,25 +229,21 @@
       <a href="contact.html">Contact</a>
     </div>
   </nav>
-
   <main class="container page-content">
     <section class="profile-card">
       <div class="card-header">
         <h2>Welcome to My Space</h2>
       </div>
-
       <div class="card-body">
         <p class="greeting">
           안녕하세요! 전통적인 공간의 한계를 넘어 <strong>건축</strong>과 <strong>AI 미래 기술</strong>의 융합을 꿈꾸는 <strong>장희승</strong>입니다.
         </p>
-
         <div class="info-grid">
           <div class="info-box accent-box">
             <h3>📍 소속 / 학번</h3>
             <p>광운대학교 건축학과</p>
             <p class="sub-value">학번: 2025127011</p>
           </div>
-
           <div class="info-box accent-box">
             <h3>🤖 관심 분야</h3>
             <p>AI 로봇 · 스마트 건축</p>
@@ -54,7 +252,6 @@
             <p class="sub-value">로봇 팔 기반의 비정형 건축(Robotic Fabrication)</p>
           </div>
         </div>
-
         <div class="status-wrapper">
           <h3>⚡ Current Status</h3>
           <div class="status-badge-container">
@@ -65,17 +262,181 @@
             <span class="status-badge">AI robot</span>
           </div>
           <p class="status-desc">현재 웹 기술의 기초를 다지며 저의 첫 포트폴리오를 작성해나가고 있습니다.<br>
-    지금은 AI로봇학과의 전공 3개 수업을 이수하며 로봇 관련 이론과 기초 지식을 배우는 데 집중하고 있습니다.<br>
-    1학년 때 접했던 건축학적 기초를 바탕으로, 향후 기술 중심의 '스마트 건축' 분야로 나아가기 위해 학습을 진행 중입니다.</p>
+          지금은 AI로봇학과의 전공 3개 수업을 이수하며 로봇 관련 이론과 기초 지식을 배우는 데 집중하고 있습니다.<br>
+          1학년 때 접했던 건축학적 기초를 바탕으로, 향후 기술 중심의 '스마트 건축' 분야로 나아가기 위해 학습을 진행 중입니다.</p>
         </div>
-      </div> </section>
-  </main>
 
+        <!-- 방명록 -->
+        <div class="guestbook-section">
+          <h3>💬 방명록</h3>
+
+          <div class="guestbook-form" id="guestbookForm">
+            <input type="text" id="gbName" placeholder="이름" maxlength="20">
+            <textarea id="gbText" placeholder="방명록을 남겨주세요 :)"></textarea>
+            <div class="guestbook-form-actions">
+              <button class="guestbook-cancel-btn" id="gbCancel">취소</button>
+              <button class="guestbook-submit-btn" id="gbSubmit">등록</button>
+            </div>
+          </div>
+
+          <button class="guestbook-write-btn" id="gbWriteBtn">✏️ 방명록 남기기</button>
+
+          <div class="guestbook-list" id="guestbookList">
+            <div class="guestbook-empty" id="gbEmpty">아직 방명록이 없어요. 첫 번째 방명록을 남겨보세요!</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
   <footer>
     <small>&copy; <span id="year">2026</span> 장희승. All rights reserved.</small>
   </footer>
-
   <script src="script.js"></script>
-</body>
+  <script>
+    const STORAGE_KEY = 'guestbook_entries';
 
+    const form = document.getElementById('guestbookForm');
+    const writeBtn = document.getElementById('gbWriteBtn');
+    const cancelBtn = document.getElementById('gbCancel');
+    const submitBtn = document.getElementById('gbSubmit');
+    const nameInput = document.getElementById('gbName');
+    const textInput = document.getElementById('gbText');
+    const list = document.getElementById('guestbookList');
+    const empty = document.getElementById('gbEmpty');
+
+    function openForm() {
+      form.classList.add('active');
+      writeBtn.style.display = 'none';
+      nameInput.focus();
+    }
+
+    function closeForm() {
+      form.classList.remove('active');
+      writeBtn.style.display = 'block';
+      nameInput.value = '';
+      textInput.value = '';
+    }
+
+    writeBtn.addEventListener('click', openForm);
+    cancelBtn.addEventListener('click', closeForm);
+
+    // 폼 바깥 클릭 시 닫기
+    document.addEventListener('click', function(e) {
+      if (form.classList.contains('active') &&
+          !form.contains(e.target) &&
+          e.target !== writeBtn) {
+        if (!nameInput.value.trim() && !textInput.value.trim()) {
+          closeForm();
+        }
+      }
+    });
+
+    function getEntries() {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    }
+
+    function saveEntries(entries) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+    }
+
+    function formatTime(isoString) {
+      const d = new Date(isoString);
+      return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    }
+
+    function renderEntries() {
+      const entries = getEntries();
+      const items = list.querySelectorAll('.guestbook-item');
+      items.forEach(el => el.remove());
+
+      if (entries.length === 0) {
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      entries.slice().reverse().forEach(entry => {
+        const item = document.createElement('div');
+        item.className = 'guestbook-item';
+        item.dataset.id = entry.id;
+
+        item.innerHTML = `
+          <div class="guestbook-item-header">
+            <span class="guestbook-item-name">${escapeHtml(entry.name || '익명')}</span>
+            <span class="guestbook-item-time">${formatTime(entry.time)}</span>
+          </div>
+          <p class="guestbook-item-text">${escapeHtml(entry.text)}</p>
+          <div class="guestbook-item-actions">
+            <button class="reaction-btn ${entry.myReaction === 'like' ? 'liked' : ''}" data-reaction="like">
+              👍 <span>${entry.likes}</span>
+            </button>
+            <button class="reaction-btn ${entry.myReaction === 'dislike' ? 'disliked' : ''}" data-reaction="dislike">
+              👎 <span>${entry.dislikes}</span>
+            </button>
+          </div>
+        `;
+
+        item.querySelectorAll('.reaction-btn').forEach(btn => {
+          btn.addEventListener('click', () => handleReaction(entry.id, btn.dataset.reaction));
+        });
+
+        list.appendChild(item);
+      });
+    }
+
+    function handleReaction(id, reaction) {
+      const entries = getEntries();
+      const entry = entries.find(e => e.id === id);
+      if (!entry) return;
+
+      if (entry.myReaction === reaction) {
+        // 취소
+        if (reaction === 'like') entry.likes--;
+        else entry.dislikes--;
+        entry.myReaction = null;
+      } else {
+        // 이전 반응 취소
+        if (entry.myReaction === 'like') entry.likes--;
+        if (entry.myReaction === 'dislike') entry.dislikes--;
+        // 새 반응
+        if (reaction === 'like') entry.likes++;
+        else entry.dislikes++;
+        entry.myReaction = reaction;
+      }
+
+      saveEntries(entries);
+      renderEntries();
+    }
+
+    submitBtn.addEventListener('click', function() {
+      const name = nameInput.value.trim();
+      const text = textInput.value.trim();
+      if (!text) {
+        textInput.focus();
+        return;
+      }
+
+      const entries = getEntries();
+      entries.push({
+        id: Date.now().toString(),
+        name: name || '익명',
+        text: text,
+        time: new Date().toISOString(),
+        likes: 0,
+        dislikes: 0,
+        myReaction: null
+      });
+      saveEntries(entries);
+      closeForm();
+      renderEntries();
+    });
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    renderEntries();
+  </script>
+</body>
 </html>
