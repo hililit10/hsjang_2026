@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>장희승 | 키보드 자동차</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .game-area {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      background-color: var(--bg-inner);
+      border: 3px solid var(--primary);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    /* 도로 무늬 */
+    .game-area::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,242,254,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,242,254,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    #car {
+      position: absolute;
+      left: 160px;
+      top: 160px;
+      width: 60px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 16px rgba(0,242,254,0.5);
+      transition: left 0.05s, top 0.05s;
+      user-select: none;
+    }
+
+    .key-guide {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .key-badge {
+      background-color: var(--bg-inner);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .coord-display {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .coord-display span {
+      color: var(--primary);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+<header class="main-header">
+  <div class="container header-title-area">
+    <h1>장희승</h1>
+    <p class="subtitle">광운대학교 건축학과 | Future Architect</p>
+    <button id="themeToggle" class="toggle-btn">☀️ 라이트 모드 전환</button>
+  </div>
+</header>
+<nav class="main-nav">
+  <div class="nav-content container">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+<main class="container page-content">
+  <section class="profile-card">
+    <div class="card-header">
+      <h2>🚗 실습 6: 키보드 자동차</h2>
+    </div>
+    <div class="card-body">
+      <p class="greeting">키보드 방향키(←↑→↓)로 자동차를 이동시키세요. 벽을 넘어가지 않도록 경계를 체크합니다.<br>
+      <strong>onkeydown</strong> 이벤트와 <strong>Key Code</strong>를 활용한 이벤트 프로그래밍 실습입니다.</p>
+
+      <!-- 조작 안내 -->
+      <div class="key-guide">
+        <span class="key-badge">← 37</span>
+        <span class="key-badge">↑ 38</span>
+        <span class="key-badge">→ 39</span>
+        <span class="key-badge">↓ 40</span>
+        <span class="key-badge" style="color:var(--primary); border-color:var(--primary);">이동 속도: 10px</span>
+      </div>
+
+      <!-- 좌표 표시 -->
+      <p class="coord-display">현재 위치: X = <span id="xPos">160</span>px, Y = <span id="yPos">160</span>px</p>
+
+      <!-- 게임 영역 -->
+      <div class="game-area" id="gameArea">
+        <div id="car">🚗</div>
+      </div>
+
+      <p style="margin-top: 12px; font-size:0.82rem; color:var(--text-muted);">
+        💡 페이지를 클릭한 후 방향키를 눌러보세요!
+      </p>
+
+      <p style="margin-top: 16px; font-size:0.85rem; color:var(--text-muted);">
+        📌 사용 기술: <code>window.onload</code>, <code>window.onkeydown</code>, <code>e.keyCode</code>, <code>style.left</code>, <code>style.top</code>, <code>event.preventDefault()</code>
+      </p>
+      <a href="portfolio.html" style="display:inline-block; margin-top:20px; color:var(--primary); font-size:0.9rem; font-weight:600;">← 포트폴리오로 돌아가기</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <small>&copy; <span id="year">2026</span> 장희승. All rights reserved.</small>
+</footer>
+<script src="script.js"></script>
+<script>
+  // 초기 좌표
+  var x = 160, y = 160;
+  var step = 10;
+  var carW = 60, carH = 36;
+
+  window.onload = function() {
+    var car      = document.getElementById("car");
+    var gameArea = document.getElementById("gameArea");
+    var xPos     = document.getElementById("xPos");
+    var yPos     = document.getElementById("yPos");
+
+    window.onkeydown = function(e) {
+      var areaW = gameArea.offsetWidth;
+      var areaH = gameArea.offsetHeight;
+
+      // 37: Left, 38: Up, 39: Right, 40: Down
+      switch(e.keyCode) {
+        case 37: x -= step; break;
+        case 38: y -= step; break;
+        case 39: x += step; break;
+        case 40: y += step; break;
+        default: return; // 방향키 아닌 경우 종료
+      }
+
+      // 화면 이탈 방지 (경계 체크)
+      if (x < 0)              x = 0;
+      if (y < 0)              y = 0;
+      if (x > areaW - carW)   x = areaW - carW;
+      if (y > areaH - carH)   y = areaH - carH;
+
+      // 자동차 위치 업데이트
+      car.style.left = x + "px";
+      car.style.top  = y + "px";
+
+      // 좌표 표시 업데이트
+      xPos.textContent = x;
+      yPos.textContent = y;
+
+      // 방향키로 인한 페이지 스크롤 방지
+      e.preventDefault();
+    };
+  };
+</script>
+</body>
+</html>

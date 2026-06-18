@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>장희승 | 스타일 변환기</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #target {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 24px;
+      border: 2px solid var(--border-color);
+      border-radius: 14px;
+      margin: 24px 0;
+      text-align: center;
+      background-color: var(--bg-inner);
+      transition: all 0.3s;
+      color: var(--text-main);
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .style-btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: inherit;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-inner);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .style-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background-color: var(--bg-hover);
+    }
+  </style>
+</head>
+<body>
+<header class="main-header">
+  <div class="container header-title-area">
+    <h1>장희승</h1>
+    <p class="subtitle">광운대학교 건축학과 | Future Architect</p>
+    <button id="themeToggle" class="toggle-btn">☀️ 라이트 모드 전환</button>
+  </div>
+</header>
+<nav class="main-nav">
+  <div class="nav-content container">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+<main class="container page-content">
+  <section class="profile-card">
+    <div class="card-header">
+      <h2>🎨 실습 3: DOM 스타일 변환기</h2>
+    </div>
+    <div class="card-body">
+      <p class="greeting">버튼을 클릭하면 아래 문장의 스타일이 즉시 변경됩니다.<br>
+      <strong>DOM의 style 프로퍼티</strong>를 직접 제어하는 실습입니다.</p>
+
+      <!-- 스타일 변경 대상 -->
+      <p id="target">이 문장의 스타일을 바꿔보세요!</p>
+
+      <!-- 버튼들 -->
+      <div class="btn-group">
+        <button class="style-btn" onclick="changeColor()">🔴 글자색 변경</button>
+        <button class="style-btn" onclick="changeSize()">🔠 크게 보기</button>
+        <button class="style-btn" onclick="changeBg()">🟡 배경 강조</button>
+        <button class="style-btn" onclick="toggleVisibility()">👁️ 숨기기 / 보이기</button>
+        <button class="style-btn" onclick="resetStyle()">↩️ 초기화</button>
+      </div>
+
+      <p style="margin-top: 28px; font-size:0.85rem; color:var(--text-muted);">
+        📌 사용 기술: <code>document.getElementById()</code>, <code>style.color</code>, <code>style.fontSize</code>, <code>style.backgroundColor</code>, <code>style.display</code>
+      </p>
+      <a href="portfolio.html" style="display:inline-block; margin-top:20px; color:var(--primary); font-size:0.9rem; font-weight:600;">← 포트폴리오로 돌아가기</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <small>&copy; <span id="year">2026</span> 장희승. All rights reserved.</small>
+</footer>
+<script src="script.js"></script>
+<script>
+  function changeColor() {
+    var obj = document.getElementById("target");
+    obj.style.color = "red";
+  }
+
+  function changeSize() {
+    var obj = document.getElementById("target");
+    obj.style.fontSize = "32px";
+  }
+
+  function changeBg() {
+    var obj = document.getElementById("target");
+    obj.style.backgroundColor = "yellow";
+    obj.style.color = "#0b132b";
+  }
+
+  function toggleVisibility() {
+    var obj = document.getElementById("target");
+    if (obj.style.display === "none") {
+      obj.style.display = "block";
+    } else {
+      obj.style.display = "none";
+    }
+  }
+
+  function resetStyle() {
+    var obj = document.getElementById("target");
+    obj.style.color = "";
+    obj.style.fontSize = "";
+    obj.style.backgroundColor = "";
+    obj.style.display = "";
+  }
+</script>
+</body>
+</html>

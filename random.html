@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>장희승 | 랜덤 뽑기</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="main-header">
+  <div class="container header-title-area">
+    <h1>장희승</h1>
+    <p class="subtitle">광운대학교 건축학과 | Future Architect</p>
+    <button id="themeToggle" class="toggle-btn">☀️ 라이트 모드 전환</button>
+  </div>
+</header>
+<nav class="main-nav">
+  <div class="nav-content container">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+<main class="container page-content">
+  <section class="profile-card">
+    <div class="card-header">
+      <h2>🎲 실습 2: 랜덤 뽑기</h2>
+    </div>
+    <div class="card-body">
+      <p class="greeting">콤마(,)로 구분된 항목들을 입력하면 그 중 하나를 무작위로 골라줍니다.<br>
+      <strong>String 객체</strong>, <strong>Array 객체</strong>, <strong>Math 객체</strong>를 활용한 JS 코어 객체 실습입니다.</p>
+
+      <script>
+        // 사용자에게 콤마로 구분된 항목 입력받기
+        var inputString = prompt("콤마(,)로 구분된 항목들을 입력하세요", "짜장면,짬뽕,제육볶음");
+
+        if (!inputString || inputString === null) {
+          document.write('<p style="color:var(--text-muted); font-size:1rem;">뽑기를 취소했습니다.</p>');
+        } else {
+          // 문자열을 콤마 기준으로 쪼개어 배열로 변환
+          var items = inputString.split(',');
+
+          // 0부터 (배열 길이 - 1) 사이의 랜덤 인덱스 생성
+          var index = Math.floor(Math.random() * items.length);
+
+          // 해당 인덱스의 항목 선택 후 공백 제거
+          var choice = items[index].trim();
+
+          // 전체 항목 목록 표시용
+          var listHtml = '';
+          for (var i = 0; i < items.length; i++) {
+            var trimmed = items[i].trim();
+            if (trimmed === choice) {
+              listHtml += '<span style="background:rgba(0,242,254,0.15); border:1px solid var(--primary); color:var(--primary); border-radius:999px; padding:4px 14px; font-size:0.88rem; font-weight:700; margin:4px;">' + trimmed + ' ✓</span>';
+            } else {
+              listHtml += '<span style="background:var(--bg-inner); border:1px solid var(--border-color); color:var(--text-muted); border-radius:999px; padding:4px 14px; font-size:0.88rem; margin:4px;">' + trimmed + '</span>';
+            }
+          }
+
+          document.write(
+            '<div style="text-align:center; padding: 32px 0;">' +
+              '<p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:16px;">입력한 ' + items.length + '개 항목 중에서...</p>' +
+              '<div style="margin-bottom:24px; display:flex; flex-wrap:wrap; justify-content:center;">' + listHtml + '</div>' +
+              '<p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">🎯 오늘의 선택</p>' +
+              '<p style="font-size:3rem; font-weight:800; color:var(--primary); letter-spacing:-1px;">' + choice + '</p>' +
+            '</div>'
+          );
+        }
+      </script>
+
+      <p style="margin-top: 28px; font-size:0.85rem; color:var(--text-muted);">
+        📌 사용 기술: <code>String.split(',')</code>, <code>Array.length</code>, <code>Math.random()</code>, <code>Math.floor()</code>, <code>String.trim()</code>
+      </p>
+      <a href="portfolio.html" style="display:inline-block; margin-top:20px; color:var(--primary); font-size:0.9rem; font-weight:600;">← 포트폴리오로 돌아가기</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <small>&copy; <span id="year">2026</span> 장희승. All rights reserved.</small>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

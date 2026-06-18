@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>장희승 | 스마트 피자 주문서</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .order-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .menu-item {
+      background-color: var(--bg-inner);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.2s ease;
+    }
+    .menu-item:has(.menu-check:checked) {
+      border-color: var(--primary);
+      background-color: rgba(0,242,254,0.05);
+    }
+    .menu-check {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .menu-name {
+      flex: 1;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .menu-price {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      min-width: 80px;
+      text-align: right;
+    }
+    .menu-qty {
+      width: 70px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--text-main);
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .menu-qty:focus { border-color: var(--primary); }
+
+    .address-group {
+      margin-top: 8px;
+    }
+    .address-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .address-input {
+      width: 100%;
+      background-color: var(--bg-inner);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .address-input:focus { border-color: var(--primary); }
+    .address-input::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+    .total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--bg-inner);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 8px;
+    }
+    .total-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .total-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .total-input {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: inherit;
+      width: 140px;
+      text-align: right;
+      pointer-events: none;
+    }
+
+    .order-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #0b132b;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      margin-top: 4px;
+    }
+    .order-btn:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+<header class="main-header">
+  <div class="container header-title-area">
+    <h1>장희승</h1>
+    <p class="subtitle">광운대학교 건축학과 | Future Architect</p>
+    <button id="themeToggle" class="toggle-btn">☀️ 라이트 모드 전환</button>
+  </div>
+</header>
+<nav class="main-nav">
+  <div class="nav-content container">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+<main class="container page-content">
+  <section class="profile-card">
+    <div class="card-header">
+      <h2>🍕 실습 5: 스마트 피자 주문서</h2>
+    </div>
+    <div class="card-body">
+      <p class="greeting">메뉴를 선택하고 수량을 바꾸면 총액이 실시간으로 계산됩니다.<br>
+      <strong>onchange</strong>, <strong>onblur</strong>, <strong>onsubmit</strong> 이벤트를 활용한 이벤트 프로그래밍 실습입니다.</p>
+
+      <form id="orderForm" onsubmit="return validate(event)">
+        <div class="order-form">
+
+          <!-- 메뉴 목록 -->
+          <div class="menu-item">
+            <input type="checkbox" class="menu-check" value="15000" onchange="recalc()">
+            <span class="menu-name">🍕 콤비네이션 피자</span>
+            <span class="menu-price">15,000원</span>
+            <input type="number" class="menu-qty" value="1" min="1" max="10" onchange="recalc()" onkeyup="recalc()">
+            <span style="font-size:0.85rem; color:var(--text-muted);">개</span>
+          </div>
+
+          <div class="menu-item">
+            <input type="checkbox" class="menu-check" value="16000" onchange="recalc()">
+            <span class="menu-name">🥩 불고기 피자</span>
+            <span class="menu-price">16,000원</span>
+            <input type="number" class="menu-qty" value="1" min="1" max="10" onchange="recalc()" onkeyup="recalc()">
+            <span style="font-size:0.85rem; color:var(--text-muted);">개</span>
+          </div>
+
+          <div class="menu-item">
+            <input type="checkbox" class="menu-check" value="14000" onchange="recalc()">
+            <span class="menu-name">🧀 치즈 피자</span>
+            <span class="menu-price">14,000원</span>
+            <input type="number" class="menu-qty" value="1" min="1" max="10" onchange="recalc()" onkeyup="recalc()">
+            <span style="font-size:0.85rem; color:var(--text-muted);">개</span>
+          </div>
+
+          <div class="menu-item">
+            <input type="checkbox" class="menu-check" value="13000" onchange="recalc()">
+            <span class="menu-name">🍖 페퍼로니 피자</span>
+            <span class="menu-price">13,000원</span>
+            <input type="number" class="menu-qty" value="1" min="1" max="10" onchange="recalc()" onkeyup="recalc()">
+            <span style="font-size:0.85rem; color:var(--text-muted);">개</span>
+          </div>
+
+          <!-- 배달 주소 -->
+          <div class="address-group">
+            <label for="address">📍 배달 주소</label>
+            <input type="text" id="address" class="address-input" placeholder="배달 주소를 입력하세요"
+              onblur="checkAddress(this)">
+          </div>
+
+          <!-- 총액 -->
+          <div class="total-row">
+            <span class="total-label">💰 총 합계</span>
+            <input type="text" id="total" class="total-input" value="0" readonly> 원
+          </div>
+
+          <!-- 주문 버튼 -->
+          <button type="submit" class="order-btn">🛵 주문하기</button>
+
+        </div>
+      </form>
+
+      <p style="margin-top: 28px; font-size:0.85rem; color:var(--text-muted);">
+        📌 사용 기술: <code>onchange</code>, <code>onblur</code>, <code>onsubmit</code>, <code>.checked</code>, <code>event.preventDefault()</code>
+      </p>
+      <a href="portfolio.html" style="display:inline-block; margin-top:20px; color:var(--primary); font-size:0.9rem; font-weight:600;">← 포트폴리오로 돌아가기</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <small>&copy; <span id="year">2026</span> 장희승. All rights reserved.</small>
+</footer>
+<script src="script.js"></script>
+<script>
+  // 가격 계산 함수 (onchange)
+  function recalc() {
+    var total = 0;
+    var checks = document.getElementsByClassName("menu-check");
+    var qtys   = document.getElementsByClassName("menu-qty");
+
+    for (var i = 0; i < checks.length; i++) {
+      if (checks[i].checked) { // 체크된 항목만 계산
+        var price    = parseInt(checks[i].value);
+        var quantity = parseInt(qtys[i].value);
+        total += price * quantity;
+      }
+    }
+    document.getElementById("total").value = total.toLocaleString();
+  }
+
+  // 주소 미입력 감지 (onblur)
+  function checkAddress(input) {
+    if (input.value.trim() === "") {
+      alert("⚠️ 배달 주소를 입력해주세요!");
+      input.focus();
+    }
+  }
+
+  // 폼 전송 제어 (onsubmit)
+  function validate(e) {
+    var totalStr = document.getElementById("total").value.replace(/,/g, "");
+    var total    = parseInt(totalStr);
+    var address  = document.getElementById("address").value.trim();
+
+    if (total === 0) {
+      alert("🍕 메뉴를 최소 1개 이상 선택해주세요!");
+    } else if (address === "") {
+      alert("📍 배달 주소를 입력해주세요!");
+      document.getElementById("address").focus();
+    } else {
+      alert("✅ 주문 완료!\n총액: " + document.getElementById("total").value + "원\n주소: " + address);
+    }
+
+    e.preventDefault(); // 페이지 이동 막기
+    return false;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>장희승 | D-Day 계산기</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="main-header">
+  <div class="container header-title-area">
+    <h1>장희승</h1>
+    <p class="subtitle">광운대학교 건축학과 | Future Architect</p>
+    <button id="themeToggle" class="toggle-btn">☀️ 라이트 모드 전환</button>
+  </div>
+</header>
+<nav class="main-nav">
+  <div class="nav-content container">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+<main class="container page-content">
+  <section class="profile-card">
+    <div class="card-header">
+      <h2>📅 실습 1: D-Day 계산기</h2>
+    </div>
+    <div class="card-body">
+      <p class="greeting">목표 날짜를 입력하면 오늘로부터 남은 D-Day를 계산합니다.<br>
+      <strong>Date 객체</strong>와 <strong>Math 객체</strong>를 활용한 JS 코어 객체 실습입니다.</p>
+
+      <script>
+        // 오늘 날짜 생성
+        var now = new Date();
+
+        // 사용자에게 날짜 입력받기
+        var yearStr  = prompt("목표 연도를 입력하세요 (예: 2025)", "");
+        var monthStr = prompt("목표 월을 입력하세요 (예: 12)", "");
+        var dayStr   = prompt("목표 일을 입력하세요 (예: 25)", "");
+
+        if (!yearStr || yearStr === null) {
+          document.write('<p style="color:var(--text-muted); font-size:1rem;">계산을 취소했습니다.</p>');
+        } else {
+          // 문자열 → 숫자 변환
+          var year  = parseInt(yearStr);
+          var month = parseInt(monthStr);
+          var day   = parseInt(dayStr);
+
+          // 목표 날짜 객체 생성 (month는 0부터 시작하므로 -1)
+          var targetDate = new Date(year, month - 1, day);
+
+          // 두 날짜의 차이 계산 (밀리초)
+          var diffMs = targetDate.getTime() - now.getTime();
+
+          // 밀리초 → 일(day) 단위 변환
+          var diffDay = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+          // 결과 출력
+          var resultText = "";
+          var resultColor = "var(--primary)";
+
+          if (diffDay === 0) {
+            resultText = "🎉 D-Day 입니다!";
+          } else if (diffDay > 0) {
+            resultText = "⏳ D-" + diffDay;
+          } else {
+            resultText = "✅ D+" + Math.abs(diffDay);
+            resultColor = "var(--text-muted)";
+          }
+
+          var targetStr = year + "년 " + month + "월 " + day + "일";
+          var todayStr  = now.getFullYear() + "년 " + (now.getMonth() + 1) + "월 " + now.getDate() + "일";
+
+          document.write(
+            '<div style="text-align:center; padding: 32px 0;">' +
+              '<p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:8px;">오늘: ' + todayStr + '</p>' +
+              '<p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:24px;">목표: ' + targetStr + '</p>' +
+              '<p style="font-size:3.5rem; font-weight:800; color:' + resultColor + '; letter-spacing:-1px;">' + resultText + '</p>' +
+            '</div>'
+          );
+        }
+      </script>
+
+      <p style="margin-top: 28px; font-size:0.85rem; color:var(--text-muted);">
+        📌 사용 기술: <code>new Date()</code>, <code>parseInt()</code>, <code>getTime()</code>, <code>Math.ceil()</code>, <code>Math.abs()</code>
+      </p>
+      <a href="portfolio.html" style="display:inline-block; margin-top:20px; color:var(--primary); font-size:0.9rem; font-weight:600;">← 포트폴리오로 돌아가기</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <small>&copy; <span id="year">2026</span> 장희승. All rights reserved.</small>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
